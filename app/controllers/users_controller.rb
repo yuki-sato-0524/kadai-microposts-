@@ -5,7 +5,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
+    @microposts = @user.microposts.order("created_at DESC").page(params[:page])
+    count(@user)
   end
 
   def create
@@ -23,7 +25,7 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
-end
+
 
 
 private
@@ -31,3 +33,5 @@ private
   def set_user
     params.require(:user).permit(:name,:email,:password, :password_confirmation)
   end 
+  
+end

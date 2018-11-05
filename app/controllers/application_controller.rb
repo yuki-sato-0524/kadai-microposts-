@@ -10,4 +10,9 @@ class ApplicationController < ActionController::Base
     redirect_to login_url unless logged_in?
   end
   
+  def count(user)
+    @count_microposts = user.microposts.count
+  end
+  
+  
 end
