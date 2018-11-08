@@ -4,11 +4,6 @@ class UsersController < ApplicationController
     @users = User.all.page(params[:page]).per(15)
   end
 
-  def show
-    @user = User.find_by(id: params[:id])
-    @microposts = @user.microposts.order("created_at DESC").page(params[:page])
-    count(@user)
-  end
 
   def create
     @user = User.new(set_user)
@@ -25,7 +20,28 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
+#showページ
+  def show
+    @user = User.find_by(id: params[:id])
+    @microposts = @user.microposts.order("created_at DESC").page(params[:page])
+    count(@user)
+  end
 
+  def followings
+    @user = User.find_by(id: params[:id])
+    #@userのフォローしてる人をfollowingsメソで取得する
+    @followings = @user.followings.page(params[:page]) 
+    count(@user)
+  end
+  
+  def followers
+    @user = User.find_by(id: params[:id])
+    #@userのフォロワーをfollowersメソで取得する
+    @followers = @user.followers.page(params[:page])
+    count(@user) 
+  #countメソッドは@userが同じ限り #show, #followings, #followers どれも同じ結果が出る。
+  end
+    
 
 
 private

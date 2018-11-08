@@ -1,15 +1,16 @@
 class MicropostsController < ApplicationController
   before_action :require_user_logged_in
   before_action :correct_user, only:[:destroy]
+  
   def create
-    @microposts = current_user.microposts.build(post_params)
+    @micropost = current_user.microposts.build(post_params)
     
-    if @microposts.save
+    if @micropost.save
       flash[:success] = "投稿しました"
       redirect_to root_path
     else
     #actionを経由せずにトップページに飛ばされるので表示する投稿の情報を持っておかないといけない
-      @micropsts = current_user.microposts.order("created_at DESC").page(params[:page])
+      @microposts = current_user.microposts.order("created_at DESC").page(params[:page])
       flash[:danger] = "投稿できませんでした"
       render "toppages/index"
     end
@@ -35,5 +36,5 @@ class MicropostsController < ApplicationController
     unless @micropost
     redirect_to root_path
     end
-    
+  end
 end
