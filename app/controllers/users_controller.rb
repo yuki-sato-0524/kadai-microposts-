@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_user_logged_in, only:[:index,:show]
   def index
-    @users = User.all.page(params[:page]).per(15)
+    @users = User.all.order("created_at DESC").page(params[:page]).per(15)
   end
 
 
@@ -42,6 +42,10 @@ class UsersController < ApplicationController
   #countメソッドは@userが同じ限り #show, #followings, #followers どれも同じ結果が出る。
   end
     
+  def likes
+    @user = User.find_by(id: params[:id])
+    @microposts = @user.likes.order("created_at DESC").page(params[:page])
+  end
 
 
 private

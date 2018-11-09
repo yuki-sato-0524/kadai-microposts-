@@ -10,7 +10,7 @@ class MicropostsController < ApplicationController
       redirect_to root_path
     else
     #actionを経由せずにトップページに飛ばされるので表示する投稿の情報を持っておかないといけない
-      @microposts = current_user.microposts.order("created_at DESC").page(params[:page])
+      @microposts = current_user.feed_microposts.order("created_at DESC").page(params[:page])
       flash[:danger] = "投稿できませんでした"
       render "toppages/index"
     end
