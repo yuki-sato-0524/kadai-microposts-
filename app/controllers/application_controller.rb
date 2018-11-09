@@ -15,7 +15,16 @@ class ApplicationController < ActionController::Base
     @count_followings = user.followings.count
     @count_followers = user.followers.count
     @count_favorites = user.likes.count
+    
+    #@count_~ = user.情報取得メソッド.count
+    #Applicationコントローラでcountメソッドを定義。
+    #使う場合はそれぞれのアクションで定義するuserのインスタンスを入れて
+    #@~をViewに埋め込むだけ。
   end
+  
+  #def count(micropost)
+   # @count_star = micropost.be_likeds.count
+  #end
   
   
 end

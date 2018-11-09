@@ -12,4 +12,14 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
+ 
+ 
+.under-micropost .under-left{
+  float:left;
+  margin-right:5px;
+}
+.under-micropost .under-right{
+  float:left;
+}
