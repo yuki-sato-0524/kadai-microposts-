@@ -9,7 +9,7 @@ class FavoritesController < ApplicationController
     #if current_page?(user_path(user))
      # redirect_to user_path(user) 
     #else
-      redirect_to root_path
+      redirect_back(fallback_location: root_path)
     #end
   end
 
@@ -22,7 +22,7 @@ class FavoritesController < ApplicationController
     #if current_page?(user_path(user))
      # redirect_to user_path(user) 
     #else
-     redirect_to root_path
+     redirect_back(fallback_location: root_path)
     #end
   end
   
