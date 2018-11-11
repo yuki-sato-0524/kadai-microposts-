@@ -25,7 +25,8 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %> <span class="caret"></span></a>
               
               <ul class="dropdown-menu">
-                <li><%= link_to "my profile", user_path(current_user)%></li>
+                <li><%= link_to "My profile", user_path(current_user)%></li>
+                <li><%= link_to " My favorits", likes_user_path(current_user) %></li>
                 <li role="separator" class="divider"></li>
                 <li><%= link_to "log out", logout_path, method: :delete %></li>
               </ul>
